@@ -11,26 +11,26 @@ const moment = require("moment");
 let key = require("./keys.js");
 
 //get arguments that will be used by the app to receive data through the APIs
-let userInput1 = process.argv[2];
-let userInput2 = process.argv[3];
+let user1 = process.argv[2];
+let user2 = process.argv[3];
 
-const log = data => {
-  fs.appendFile("log.txt", `\r\n\r\n${data}`, function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Log has been updated!");
-    }
-  });
-};
+// const log = data => {
+//   fs.appendFile("log.txt", `\r\n\r\n${data}`, function(err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("Log has been updated!");
+//     }
+//   });
+// };
 
-const doFromTxt = () => {
+const doWhatItSays = () => {
   fs.readFile("random.txt", "utf8", function(error, data) {
-    getSongInfo(data);
+    songInfo(data);
   });
 };
 
-const getSongInfo = name => {
+const retrieveSongInfo = name => {
   let spotify = new Spotify(key.spotify);
   spotify.search({ type: "track", query: name }, function(err, data) {
     if (err) {
@@ -47,7 +47,7 @@ const getSongInfo = name => {
   });
 };
 
-const getMovieInfo = name => {
+const retrieveMovieInfo = name => {
   if (!name) {
     name = "Mr.Nobody";
   }
@@ -71,7 +71,7 @@ const getMovieInfo = name => {
     });
 };
 
-const getConcertInfo = name => {
+const retrieveConcertInfo = name => {
   axios
     .get(
       `https://rest.bandsintown.com/artists/${name}/events?app_id=codingbootcamp`
@@ -98,18 +98,18 @@ const getConcertInfo = name => {
 };
 
 //initializes on execution
-switch (userInput1) {
+switch (user1) {
   case "spotify-this-song":
-    getSongInfo(userInput2);
+  retrieveSongInfo(user2);
     break;
   case "movie-this":
-    getMovieInfo(userInput2);
+  retrieveMovieInfo(user2);
     break;
   case "concert-this":
-    getConcertInfo(userInput2);
+  retrieveConcertInfo(user2);
     break;
   case "do-what-it-says":
-    doFromTxt();
+    doWhatItSays();
     break;
   default:
     break;
