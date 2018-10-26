@@ -1,40 +1,30 @@
 //executes env config
-require("dotenv").config();
+require('dotenv').config();
 
 //inits packages
-const Spotify = require("node-spotify-api");
-const axios = require("axios");
-const fs = require("fs");
-const moment = require("moment");
+const Spotify = require('node-spotify-api');
+const axios = require('axios');
+const fs = require('fs');
+const moment = require('moment');
 
 //imports API key directed from key.js and
-let key = require("./keys.js");
+let key = require('./keys.js');
 
 //get arguments that will be used by the app to receive data through the APIs
 let user1 = process.argv[2];
 let user2 = process.argv[3];
 
-// const log = data => {
-//   fs.appendFile("log.txt", `\r\n\r\n${data}`, function(err) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log("Log has been updated!");
-//     }
-//   });
-// };
-
 const doWhatItSays = () => {
-  fs.readFile("random.txt", "utf8", function(error, data) {
+  fs.readFile('random.txt', 'utf8', function(error, data) {
     songInfo(data);
   });
 };
 
 const retrieveSongInfo = name => {
   let spotify = new Spotify(key.spotify);
-  spotify.search({ type: "track", query: name }, function(err, data) {
+  spotify.search({ type: 'track', query: name }, function(err, data) {
     if (err) {
-      return console.log("Error occurred: " + err);
+      return console.log('Error occurred: ' + err);
     }
 
     console.log(
@@ -49,7 +39,7 @@ const retrieveSongInfo = name => {
 
 const retrieveMovieInfo = name => {
   if (!name) {
-    name = "Mr.Nobody";
+    name = 'Mr.Nobody';
   }
   axios
     .get(`http://www.omdbapi.com/?t=${name}&plot=short&apikey=trilogy`)
@@ -87,7 +77,7 @@ const retrieveConcertInfo = name => {
               source[i].venue.country
             }\nVenue : ${source[i].venue.name}\nDate : ${moment(
               source[i].datetime
-            ).format("MM/DD/YYYY")} \n`
+            ).format('MM/DD/YYYY')} \n`
           );
         }
       }
@@ -99,16 +89,16 @@ const retrieveConcertInfo = name => {
 
 //initializes on execution
 switch (user1) {
-  case "spotify-this-song":
+  case 'spotify-this-song':
   retrieveSongInfo(user2);
     break;
-  case "movie-this":
+  case 'movie-this':
   retrieveMovieInfo(user2);
     break;
-  case "concert-this":
+  case 'concert-this':
   retrieveConcertInfo(user2);
     break;
-  case "do-what-it-says":
+  case 'do-what-it-says':
     doWhatItSays();
     break;
   default:
