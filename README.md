@@ -9,8 +9,8 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 - Add your spotify keys inside example.env
 - NPM install to download dependencies
 - Run one of the following commands
-    node liri spotify-this-song 'yourSong'
-    node liri concert-this 'yourConcert'
-    node liri movie-this 'yourMovie'
+   * node liri spotify-this-song 'yourSong'
+   * node liri concert-this 'yourConcert'
+   * node liri movie-this 'yourMovie'
 
 ## Here are some screenshots
