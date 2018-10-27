@@ -10,14 +10,14 @@ let user1 = process.argv[2];
 let user2 = process.argv[3];
 
 const doWhatItSays = () => {
-  fs.readFile('random.txt', 'utf8', function(error, data) {
+  fs.readFile('random.txt', 'utf8', (error, data) => {
     songInfo(data);
   });
 };
 
 const retrieveSongInfo = name => {
   let spotify = new Spotify(key.spotify);
-  spotify.search({ type: 'track', query: name }, function(err, data) {
+  spotify.search({ type: 'track', query: name }, (err, data) => {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
