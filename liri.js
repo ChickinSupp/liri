@@ -1,16 +1,16 @@
-//executes env config
+// Executes env config
 require('dotenv').config();
 
-//inits packages
+// Inits packages
 const Spotify = require('node-spotify-api');
 const axios = require('axios');
 const fs = require('fs');
 const moment = require('moment');
 
-//imports API key directed from key.js and
+// Imports API key directed from key.js and
 let key = require('./keys.js');
 
-//get arguments that will be used by the app to receive data through the APIs
+// Get arguments that will be used by the app to receive data through the APIs
 let user1 = process.argv[2];
 let user2 = process.argv[3];
 
@@ -87,7 +87,7 @@ const retrieveConcertInfo = name => {
     });
 };
 
-//initializes on execution
+// Initializes on execution
 switch (user1) {
   case 'spotify-this-song':
   retrieveSongInfo(user2);
