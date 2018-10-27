@@ -13,4 +13,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
    * node liri concert-this 'yourConcert'
    * node liri movie-this 'yourMovie'
 
-## Here are some screenshots
+## Screenshots
+![](resources/images/spotify-this-song.png)
+![](resources/images/concert-this.png)
+![](resources/images/movie-this.png)
